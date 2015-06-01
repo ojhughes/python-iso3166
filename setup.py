@@ -24,7 +24,7 @@ setup(name='iso3166',
       install_requires=[
           'fuzzywuzzy',
           'python-Levenshtein'
-      ]
+      ],
       long_description=read('README.rst'),
       zip_safe=False,
       classifiers=[
