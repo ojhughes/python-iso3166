@@ -3,6 +3,7 @@
 import re
 from numbers import Integral
 from collections import namedtuple
+from fuzzywuzzy import process
 
 __all__ = ["countries"]
 
