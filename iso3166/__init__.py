@@ -368,7 +368,7 @@ class _CountryLookup(object):
         key, confidence = process.extractOne(name.upper(),countries_by_name.keys(), score_cutoff=score)
         if key:
             return self.get(key)
-        else
+        else:
             return None
 
     def __len__(self):
