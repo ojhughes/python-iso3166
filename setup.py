@@ -21,6 +21,10 @@ setup(name='iso3166',
       url="http://github.com/deactivated/python-iso3166",
       description='Self-contained ISO 3166-1 country definitions.',
       packages=find_packages(exclude=['ez_setup']),
+      install_requires=[
+          'fuzzywuzzy',
+          'python-Levenshtein'
+      ]
       long_description=read('README.rst'),
       zip_safe=False,
       classifiers=[

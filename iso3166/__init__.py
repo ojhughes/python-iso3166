@@ -145,9 +145,10 @@ _records = [
     Country(u"Kazakhstan", "KZ", "KAZ", "398", u"Kazakhstan"),
     Country(u"Kenya", "KE", "KEN", "404", u"Kenya"),
     Country(u"Kiribati", "KI", "KIR", "296", u"Kiribati"),
-    Country(u"Korea, Democratic People's Republic of", "KP", "PRK", "408",
+    Country(u"North Korea", "KP", "PRK", "408",
             u"Korea, Democratic People's Republic of"),
-    Country(u"Korea, Republic of", "KR", "KOR", "410", u"Korea, Republic of"),
+    Country(u"South Korea", "KR", "KOR", "410", u"Korea, Republic of"),
+    Country(u"Kosovo", "XK", "XKX", "0", "Kosovo"),
     Country(u"Kuwait", "KW", "KWT", "414", u"Kuwait"),
     Country(u"Kyrgyzstan", "KG", "KGZ", "417", u"Kyrgyzstan"),
     Country(u"Lao People's Democratic Republic", "LA", "LAO", "418",
@@ -359,6 +360,16 @@ class _CountryLookup(object):
         return r
 
     __getitem__ = get
+
+    def find_fuzzy(self, name, score=80):
+        """
+        Fuzzy search for country, return best match
+        """
+        key, confidence = process.extractOne(name.upper(),countries_by_name.keys(), score_cutoff=score)
+        if key:
+            return self.get(key)
+        else
+            return None
 
     def __len__(self):
         return len(_records)
