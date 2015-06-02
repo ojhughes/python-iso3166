@@ -362,13 +362,19 @@ class _CountryLookup(object):
 
     __getitem__ = get
 
-    def find_fuzzy(self, name, score=80):
+    def find_fuzzy(self, name, score=80, code_type="alpha2"):
         """
-        Fuzzy search for country, return best match
+        Fuzzy search for country, return best match (country code)
         """
-        key, confidence = process.extractOne(name.upper(),countries_by_name.keys(), score_cutoff=score)
-        if key:
-            return self.get(key)
+        match = process.extractOne(name.upper(),countries_by_name.keys(), score_cutoff=score)
+        if match:
+            key, confidece = match
+            if code_type == "alpha2":
+                return self.get(key).alpha2
+            elif code_type == "alpha3":
+                return self.get(key).alpha3
+            else:
+                raise ValueError("code_type parameter must equal either 'alpha2' or 'alpha3'")
         else:
             return None
 
